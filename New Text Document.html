@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>To Someone Brilliant</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #ffb3ec, #c3a6ff, #ffd6f9);
+        font-family: "Segoe UI", sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    /* TOP TITLE */
+    .message-box {
+        position: absolute;
+        top: 5%;
+        width: 100%;
+        z-index: 10;
+    }
+
+    h1 {
+        font-size: 45px;
+        text-shadow: 0 0 10px rgba(0,0,0,0.4);
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        font-style: italic;
+        opacity: 0.85;
+    }
+
+    /* IMAGE + TEXT ROW */
+    .image-row {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: rgba(0,0,0,0.25);
+        padding: 15px 25px;
+        border-radius: 12px;
+        backdrop-filter: blur(6px);
+        z-index: 10;
+        box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    }
+
+    .image-row img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.5);
+        border: 2px solid rgba(255,255,255,0.6);
+    }
+
+    .image-row p {
+        max-width: 260px;
+        font-size: 18px;
+        line-height: 1.4em;
+        text-align: left;
+    }
+
+    .hint {
+        color: #ffd3ff;
+        font-style: italic;
+        font-size: 17px;
+    }
+
+    /* INFO SECTION */
+    .info-section {
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        background: rgba(0,0,0,0.25);
+        padding: 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(5px);
+        z-index: 10;
+        box-shadow: 0 0 12px rgba(0,0,0,0.4);
+    }
+
+    .info-section h2 {
+        margin-top: 0;
+        color: #ffe6ff;
+        font-size: 28px;
+    }
+
+    .info-section p {
+        margin: 8px 0;
+        font-size: 18px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- TOP TITLE -->
+<div class="message-box">
+    <h1>To Someone Brilliant</h1>
+    <p class="subtitle">If you think this might be about you… maybe you’re right.</p>
+</div>
+
+<!-- IMAGE + TEXT (SIDE-BY-SIDE) -->
+<div class="image-row">
+
+    <!-- PUT YOUR PNG IMAGE HERE -->
+    <!-- Replace 'yourimage.png' with your actual picture file -->
+    <img src="IMG-20251123-WA0006.jpg" alt="Her Picture">
+
+    <p>
+        There’s something about her…  
+        not just how she looks,  
+        but the way she moves, speaks, and smiles.  
+        <br><br>
+        <span class="hint">If she sees this, she’ll feel the hint instantly.</span>
+    </p>
+</div>
+
+<!-- INFO SECTION -->
+<div class="info-section">
+    <h2>About Her</h2>
+
+    <p>Her name begins with a soft, beautiful letter…  
+       <span class="hint">and it fits her perfectly.</span>
+    </p>
+
+    <p>She comes from a unique place,  
+       one that most people don’t know,  
+       <span class="hint">but I remember it every time I think of her.</span>
+    </p>
+
+    <p>She’s in that important school level  
+       where life starts to shape who you become —  
+       <span class="hint">and she’s handling it amazingly well.</span>
+    </p>
+
+    <p>She’s skilled with computers,  
+       talented in ICT in a way that truly stands out —  
+       <span class="hint">and honestly, that impresses me more than she knows.</span>
+    </p>
+
+    <p class="hint">If she looks closely… she'll know this is about her.</p>
+</div>
+
+<!-- THREE.JS 3D HEART -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const x = 0, y = 0;
+    const heartShape = new THREE.Shape();
+    heartShape.moveTo(x+5, y+5);
+    heartShape.bezierCurveTo(x+5,y+5, x+4,y, x,y);
+    heartShape.bezierCurveTo(x-6,y, x-6,y+7, x-6,y+7);
+    heartShape.bezierCurveTo(x-6,y+11, x-3,y+15.4, x+5,y+19);
+    heartShape.bezierCurveTo(x+13,y+15.4, x+16,y+11, x+16,y+7);
+    heartShape.bezierCurveTo(x+16,y+7, x+16,y, x+10,y);
+    heartShape.bezierCurveTo(x+7,y, x+5,y+5, x+5,y+5);
+
+    const geometry = new THREE.ExtrudeGeometry(heartShape, {
+        steps: 2,
+        depth: 2,
+        bevelEnabled: true,
+        bevelThickness: 1,
+        bevelSize: 1,
+        bevelSegments: 2
+    });
+
+    const material = new THREE.MeshPhongMaterial({
+        color: 0xff1fbf,
+        shininess: 150,
+        specular: 0xffffff
+    });
+
+    const heart = new THREE.Mesh(geometry, material);
+    heart.scale.set(0.15, 0.15, 0.15);
+    scene.add(heart);
+
+    const light1 = new THREE.PointLight(0xffffff, 1);
+    light1.position.set(10,10,10);
+    scene.add(light1);
+
+    const light2 = new THREE.PointLight(0xff57ff, 1);
+    light2.position.set(-10,-10,10);
+    scene.add(light2);
+
+    camera.position.z = 25;
+
+    function animate() {
+        requestAnimationFrame(animate);
+        heart.rotation.x += 0.005;
+        heart.rotation.y += 0.01;
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener("resize", ()=> {
+        camera.aspect = window.innerWidth/window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+
+</body>
+</html>
